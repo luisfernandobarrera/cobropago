@@ -1,21 +1,11 @@
 from django.db import models
-from django.conf import settings
 from django.utils.translation import ugettext as _
 from decimal import Decimal
-
-
-class WithUsernameModel(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
-
-    class Meta:
-        abstract = True
-        unique_together = (('user', 'name'),)
-        index_together = (('user', 'name'),)
-
+from common.models import WithUsernameModel
 
 class Account(WithUsernameModel):
     name = models.CharField(max_length=100)
-    balance = models.DecimalField(max_digits=32, decimal_places=2)
+    balance = models.DecimalField(max_digits=32, decimal_places=2, default=Decimal('0.00'))
 
     def set_balance(self):
         balance = self.transactions.aggregate(total=models.Sum('amount')).get('total', Decimal('0'))
