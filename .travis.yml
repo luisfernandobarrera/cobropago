@@ -1,0 +1,38 @@
+language: python
+services:
+  - postgresql
+  - redis-server
+python:
+  - "2.7"
+before_script:
+- export DATABASE_URL=postgres://postgres@localhost/cobropago
+- export DJANGO_SECRET=`openssl rand -base64 32`
+- psql -c 'CREATE DATABASE "cobropago";' -U postgres
+install:
+  - "pip install -r requirements/test.txt"
+script:
+  - ./cobropago/manage.py test cobropago
+after_success:
+  - coveralls
+
+deploy:
+  provider: heroku
+  app:
+    master: cobropago-dev
+    qa: cobropago-qa
+    prod: cobropago-prod
+  on:
+    repo: joyinsky/cobropago
+  run:
+    - "./cobropago/manage.py migrate"
+
+notifications:
+  email: false
+
+# This reportedly works around an issue downloading packages from pypi on
+# travis. Consider removing this after the underlying issue is fixed.
+# https://github.com/travis-ci/travis-ci/issues/2389
+sudo: false
+
+matrix:
+  fast_finish: true

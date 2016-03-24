@@ -1,0 +1,11 @@
+site_name: cobropago
+site_description: A simple but powerful income and expense administrator.
+repo_url: https://github.com/joyinsky/cobropago
+site_dir: site
+copyright: Copyright &copy; 2015, <a href="https://github.com/joyinsky">joyinsky</a>.
+
+pages:
+  - Home: 'index.md'
+  - API:
+    - Authentication: 'api/authentication.md'
+    - Users: 'api/users.md'
