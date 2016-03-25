@@ -16,8 +16,7 @@ class AccountSerializer(serializers.ModelSerializer):
 class PayeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payee
-        field = ('id', 'name')
-        read_only_field = ('username',)
+        fields = ('id', 'name')
 
 
 class TransactionSerializer(serializers.ModelSerializer):
