@@ -10,7 +10,7 @@ class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
         fields = ('id', 'name')
-        read_only_fields = ('balance',)
+        read_only_fields = ('balance')
 
 
 class PayeeSerializer(serializers.ModelSerializer):
