@@ -18,6 +18,12 @@ class PayeeSerializer(serializers.ModelSerializer):
         model = Payee
         fields = ('id', 'name')
 
+    def create(self, validated_data):
+        name = validated_data.pop('name')
+        user = validated_data.pop('user')
+        instance, _ = Payee.objects.get_or_create(name=name, user=user, defaults=validated_data)
+        return instance
+
 
 class TransactionSerializer(serializers.ModelSerializer):
     payee = PayeeSerializer()
