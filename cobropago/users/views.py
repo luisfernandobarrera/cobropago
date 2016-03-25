@@ -1,8 +1,9 @@
 from rest_framework import viewsets, mixins
 from rest_framework.permissions import AllowAny
 
+from common.permissions import IsOwnerOrReadOnly
+
 from .models import User
-from .permissions import IsOwnerOrReadOnly
 from .serializers import CreateUserSerializer, UserSerializer
 
 
