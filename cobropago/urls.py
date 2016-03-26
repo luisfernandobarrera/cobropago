@@ -9,12 +9,13 @@ from django.views.generic.base import RedirectView
 from rest_framework.routers import DefaultRouter
 
 from users.views import UserViewSet
-from transactions.views import AccountViewSet, PayeeViewSet
+from transactions.views import AccountViewSet, PayeeViewSet, TransactionViewSet
 
 router = DefaultRouter(trailing_slash=False)
 router.register(r'users', UserViewSet)
 router.register(r'accounts', AccountViewSet)
 router.register(r'payees', PayeeViewSet)
+router.register(r'transactions', TransactionViewSet)
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),

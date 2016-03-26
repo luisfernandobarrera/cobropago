@@ -26,5 +26,13 @@ class PayeeViewSet(ShowOnlyUserObjectsMixin,
     search_fields = ('name',)
 
 
+class TransactionViewSet(ShowOnlyUserObjectsMixin,
+                         CreateModelWithUserMixin,
+                         viewsets.ModelViewSet):
+    serializer_class = TransactionSerializer
+    permission_classes = (IsAuthenticated,)
+    queryset = Transaction.objects.all()
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('date', 'memo', 'payee__name')
 
 
