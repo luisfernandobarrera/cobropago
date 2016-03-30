@@ -3,7 +3,7 @@ services:
   - postgresql
   - redis-server
 python:
-  - "2.7"
+  - "3.4"
 before_script:
 - export DATABASE_URL=postgres://postgres@localhost/cobropago
 - export DJANGO_SECRET=`openssl rand -base64 32`
