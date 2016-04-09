@@ -23,12 +23,13 @@ class Common(Configuration):
         'django_rq',                 # asynchronous queuing
         'versatileimagefield',       # image manipulation
         'djangobower',
+        "compressor",
 
         # Your apps
         'authentication',
         'users',
         'transactions',
-
+        'web',
     )
 
     # https://docs.djangoproject.com/en/1.8/topics/http/middleware/
@@ -76,12 +77,20 @@ class Common(Configuration):
         'django.contrib.staticfiles.finders.FileSystemFinder',
         'django.contrib.staticfiles.finders.AppDirectoriesFinder',
         'djangobower.finders.BowerFinder',
+        'compressor.finders.CompressorFinder',
     )
     BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
 
     BOWER_INSTALLED_APPS = (
         'jquery',
         'underscore',
+        'foundation',
+    )
+
+    COMPRESS_PRECOMPILERS = (
+        ('text/x-sass', 'sass --compass "{infile}" "{outfile}"'),
+        ('text/x-scss', 'sass --scss --compass -I "%s/bower_components/foundation/scss" "{infile}" "{outfile}"'
+                        % BOWER_COMPONENTS_ROOT),
     )
 
     # Media files

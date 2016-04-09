@@ -20,3 +20,4 @@ newrelic==2.50.0.39
 
 # Static Files and Libraries
 django-bower==5.1.0
+django-compressor==2.0

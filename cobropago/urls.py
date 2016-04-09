@@ -10,6 +10,7 @@ from rest_framework.routers import DefaultRouter
 
 from users.views import UserViewSet
 from transactions.views import AccountViewSet, PayeeViewSet, TransactionViewSet
+from web.views import HomePageView
 
 router = DefaultRouter(trailing_slash=False)
 router.register(r'users', UserViewSet)
@@ -24,6 +25,8 @@ urlpatterns = [
 
     # the 'api-root' from django rest-frameworks default router
     # http://www.django-rest-framework.org/api-guide/routers/#defaultrouter
-    url(r'^$', RedirectView.as_view(url=reverse_lazy('api-root'), permanent=False)),
+    # url(r'^$', RedirectView.as_view(url=reverse_lazy('api-root'), permanent=False)),
+
+    url(r'^$', HomePageView.as_view()),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
