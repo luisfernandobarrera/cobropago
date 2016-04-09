@@ -16,3 +16,6 @@ coverage==3.7.1
 
 # Style Enforcement
 flake8==2.4.1
+
+# Live Testing
+selenium==2.53.1

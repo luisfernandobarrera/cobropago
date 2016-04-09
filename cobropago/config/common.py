@@ -22,6 +22,7 @@ class Common(Configuration):
         'rest_framework.authtoken',  # token authentication
         'django_rq',                 # asynchronous queuing
         'versatileimagefield',       # image manipulation
+        'djangobower',
 
         # Your apps
         'authentication',
@@ -74,6 +75,13 @@ class Common(Configuration):
     STATICFILES_FINDERS = (
         'django.contrib.staticfiles.finders.FileSystemFinder',
         'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+        'djangobower.finders.BowerFinder',
+    )
+    BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
+
+    BOWER_INSTALLED_APPS = (
+        'jquery',
+        'underscore',
     )
 
     # Media files
