@@ -79,19 +79,22 @@ class Common(Configuration):
         'djangobower.finders.BowerFinder',
         'compressor.finders.CompressorFinder',
     )
-    BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
+    BOWER_COMPONENTS_ROOT = os.path.join(STATIC_ROOT, 'components')
 
     BOWER_INSTALLED_APPS = (
         'jquery',
         'underscore',
         'foundation',
+        'activix-foundicons',
     )
 
     COMPRESS_PRECOMPILERS = (
-        ('text/x-sass', 'sass --compass "{infile}" "{outfile}"'),
-        ('text/x-scss', 'sass --scss --compass -I "%s/bower_components/foundation/scss" "{infile}" "{outfile}"'
+        ('text/x-sass', 'sass "{infile}" "{outfile}"'),
+        ('text/x-scss', 'sass --scss -I "%s/bower_components/foundation/scss" "{infile}" "{outfile}"'
                         % BOWER_COMPONENTS_ROOT),
     )
+
+    COMPRESS_CACHEABLE_PRECOMPILERS = ('text/x-scss',)
 
     # Media files
     MEDIA_ROOT = join(os.path.dirname(BASE_DIR), 'media')

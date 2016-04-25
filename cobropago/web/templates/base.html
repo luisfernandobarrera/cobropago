@@ -1,3 +1,5 @@
+{% load static %}
+{% load compress %}
 <!DOCTYPE html>
 <!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
 <html class="no-js" lang="en">
@@ -7,94 +9,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foundation 5</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/normalize.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css">
-    <link href='http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css' rel='stylesheet'
-          type='text/css'>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <link href="{% static '/static/components/bower_components/foundation/css/foundation.css' %}" rel="stylesheet" type="text/css"/>
+    <link href='{% static '/static/components/bower_components/activix-foundicons/foundation-icons.css' %}' rel='stylesheet' type='text/css'>
+    {% compress css %}
+        <link href="{% static '/static/scss/style.scss' %}" type="text/x-scss" rel="stylesheet">
+    {% endcompress %}
 </head>
 <body>
+    <div class="off-canvas-wrap move-right" data-offcanvas>
+        <div class="inner-wrap">
+            <a class="left-off-canvas-toggle" href="#"><i class="fi-list"></i></a>
 
-<div class="row">
-    <div class="large-3 columns">
-        <h1><img src="http://placehold.it/400x100&text=Logo"/></h1>
-    </div>
-    <div class="large-9 columns">
-        <ul class="inline-list right">
-            <li><a href="#">Section 1</a></li>
-            <li><a href="#">Section 2</a></li>
-            <li><a href="#">Section 3</a></li>
-            <li><a href="#">Section 4</a></li>
-        </ul>
-    </div>
-</div>
+            <!-- Off Canvas Menu -->
+            <aside class="left-off-canvas-menu">
 
-<div class="row">
+                <div class="icon-bar vertical five-up">
+                    <a class="item">
+                        <i class="fi-graph-bar"></i>
+                        <label>Dashboard</label>
+                    </a>
+                    <a class="item">
+                        <i class="fi-dollar-bill"></i>
+                        <label>Accounts</label>
+                    </a>
+                    <a class="item">
+                        <i class="fi-shopping-cart"></i>
+                        <label>Transactions</label>
+                    </a>
+                    <a class="item">
+                        <i class="fi-pricetag-multiple"></i>
+                        <label>Budget</label>
+                    </a>
+                    <a class="item">
+                        <i class="fi-page-filled"></i>
+                        <label>Reports</label>
+                    </a>
+                </div>
 
+            </aside>
 
-    <div class="large-9 push-3 columns">
-        <h3>Page Title
-            <small>Page subtitle</small>
-        </h3>
-        <p>Bacon ipsum dolor sit amet salami ham hock biltong ball tip drumstick sirloin pancetta meatball short loin.
-            Venison tail chuck pork chop, andouille ball tip beef ribs flank boudin bacon. Salami andouille pork belly
-            short ribs flank cow. Salami sirloin turkey kielbasa. Sausage venison pork loin leberkas chuck short loin,
-            cow ham prosciutto pastrami jowl. Ham hock jerky tri-tip, fatback hamburger shoulder swine pancetta ground
-            round. Tri-tip prosciutto meatball turkey, brisket spare ribs shankle chuck cow chicken ham hock boudin
-            meatloaf jowl.</p>
-        <p>Ground round pastrami pork loin tenderloin jerky. Jerky spare ribs biltong, ham hock ham capicola pork. Jerky
-            turducken pork, meatloaf sausage capicola swine corned beef turkey short loin. Tongue prosciutto pork loin,
-            ground round spare ribs venison kielbasa strip steak.</p>
-        <p>Hamburger bresaola turkey t-bone, leberkas salami pork chop ham hock beef ribs. Rump biltong meatball
-            venison, short ribs pork loin shank shankle corned beef beef. Cow salami jowl short loin hamburger fatback.
-            Short ribs pork belly shoulder pastrami drumstick salami corned beef ham hock bresaola. Swine filet mignon
-            cow sausage ball tip. Cow ribeye ground round, sausage pork loin pig beef ball tip turkey boudin.</p>
-        <p>Prosciutto ball tip filet mignon andouille frankfurter chicken rump sausage meatball. Filet mignon meatloaf
-            ground round andouille ham hock pork. Bresaola short loin meatball chuck hamburger pig. Turkey venison
-            chuck, tongue fatback tail swine jerky corned beef shank kielbasa prosciutto ribeye ham tri-tip. Rump bacon
-            pork belly meatloaf shoulder short loin meatball kielbasa pork loin tongue bresaola brisket corned beef jowl
-            prosciutto. Beef ribs shankle short ribs pork belly corned beef fatback pork chop tongue biltong boudin
-            strip steak sirloin meatloaf pancetta.</p>
-    </div>
+            <!-- main content goes here -->
 
 
-    <div class="large-3 pull-9 columns">
-        <ul class="side-nav">
-            <li><a href="#">Section 1</a></li>
-            <li><a href="#">Section 2</a></li>
-            <li><a href="#">Section 3</a></li>
-            <li><a href="#">Section 4</a></li>
-            <li><a href="#">Section 5</a></li>
-            <li><a href="#">Section 6</a></li>
-        </ul>
-        <p><img src="http://placehold.it/320x240&text=Ad"/></p>
-    </div>
-</div>
+            <!-- close the off-canvas menu -->
+            <a class="exit-off-canvas"></a>
 
-<footer class="row">
-    <div class="large-12 columns">
-        <hr/>
-        <div class="row">
-            <div class="large-6 columns">
-                <p>&copy; Copyright no one at all. Go to town.</p>
-            </div>
-            <div class="large-6 columns">
-                <ul class="inline-list right">
-                    <li><a href="#">Section 1</a></li>
-                    <li><a href="#">Section 2</a></li>
-                    <li><a href="#">Section 3</a></li>
-                    <li><a href="#">Section 4</a></li>
-                </ul>
-            </div>
         </div>
     </div>
-</footer>
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
-<script>
-    $(document).foundation();
-</script>
-<script type="text/javascript" src="https://intercom.zurb.com/scripts/zcom.js"></script>
+    <script src="/static/components/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/static/components/bower_components/foundation/js/foundation.js"></script>
+
+    <script src="{% static "/static/js/main.js" %}"></script>
 </body>
 </html>
