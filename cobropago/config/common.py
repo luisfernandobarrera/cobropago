@@ -86,6 +86,11 @@ class Common(Configuration):
         'underscore',
         'foundation',
         'activix-foundicons',
+        'flux',
+        'react',
+        'react-router',
+        'superagent',
+        'object-assign',
     )
 
     COMPRESS_PRECOMPILERS = (
