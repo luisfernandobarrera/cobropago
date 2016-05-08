@@ -7,6 +7,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 class Common(Configuration):
+    DEBUG = values.BooleanValue(True)
 
     INSTALLED_APPS = (
         'django.contrib.admin',
@@ -24,6 +25,7 @@ class Common(Configuration):
         'versatileimagefield',       # image manipulation
         'djangobower',
         "compressor",
+        'webpack_loader',
 
         # Your apps
         'authentication',
@@ -70,8 +72,9 @@ class Common(Configuration):
     LOGIN_REDIRECT_URL = '/'
 
     # Static Files
+    WEB_ROOT = join(BASE_DIR, 'web', 'static')
     STATIC_ROOT = join(os.path.dirname(BASE_DIR), 'staticfiles')
-    STATICFILES_DIRS = [join(os.path.dirname(BASE_DIR), 'static'),]
+    # STATICFILES_DIRS = []
     STATIC_URL = '/static/'
     STATICFILES_FINDERS = (
         'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -79,13 +82,13 @@ class Common(Configuration):
         'djangobower.finders.BowerFinder',
         'compressor.finders.CompressorFinder',
     )
-    BOWER_COMPONENTS_ROOT = os.path.join(STATIC_ROOT, 'components')
+    BOWER_COMPONENTS_ROOT = os.path.join(WEB_ROOT, 'components')
 
     BOWER_INSTALLED_APPS = (
         'jquery',
         'underscore',
         'foundation',
-        'activix-foundicons',
+        'joyinsky-foundicons',
         'flux',
         'react',
         'react-router',
@@ -100,6 +103,17 @@ class Common(Configuration):
     )
 
     COMPRESS_CACHEABLE_PRECOMPILERS = ('text/x-scss',)
+    COMPRESS_ROOT = join(WEB_ROOT, 'bundles', 'css')
+
+    WEBPACK_LOADER = {
+        'DEFAULT': {
+            'CACHE': not DEBUG,
+            'BUNDLE_DIR_NAME': 'bundles/js/',  # must end with slash
+            'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+            'POLL_INTERVAL': 0.1,
+            'IGNORE': ['.+\.hot-update.js', '.+\.map']
+        }
+    }
 
     # Media files
     MEDIA_ROOT = join(os.path.dirname(BASE_DIR), 'media')
@@ -108,7 +122,7 @@ class Common(Configuration):
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': [STATICFILES_DIRS],
+            # 'DIRS': [STATICFILES_DIRS],
             'OPTIONS': {
                 'context_processors': [
                     'django.contrib.auth.context_processors.auth',

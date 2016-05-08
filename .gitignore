@@ -29,6 +29,7 @@ env
 site
 
 bower_components/
+bundles/
+webpack-stats.json
 *CACHE/
 .sass-cache/
-staticfiles/

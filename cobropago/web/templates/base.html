@@ -1,5 +1,6 @@
 {% load static %}
 {% load compress %}
+{% load render_bundle from webpack_loader %}
 <!DOCTYPE html>
 <!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
 <html class="no-js" lang="en">
@@ -10,7 +11,7 @@
     <title>Foundation 5</title>
 
     <link href="{% static '/static/components/bower_components/foundation/css/foundation.css' %}" rel="stylesheet" type="text/css"/>
-    <link href='{% static '/static/components/bower_components/activix-foundicons/foundation-icons.css' %}' rel='stylesheet' type='text/css'>
+    <link href='{% static '/static/components/bower_components/joyinsky-foundicons/foundation-icons.css' %}' rel='stylesheet' type='text/css'>
     {% compress css %}
         <link href="{% static '/static/scss/style.scss' %}" type="text/x-scss" rel="stylesheet">
     {% endcompress %}
@@ -48,7 +49,10 @@
 
             </aside>
 
-            <!-- main content goes here -->
+            <!-- main content goe>s here -->
+            <div id="main-content">
+
+            </div>
 
 
             <!-- close the off-canvas menu -->
@@ -59,6 +63,26 @@
     <script src="/static/components/bower_components/jquery/dist/jquery.js"></script>
     <script src="/static/components/bower_components/foundation/js/foundation.js"></script>
 
-    <script src="{% static "/static/js/main.js" %}"></script>
+    {% render_bundle 'main' %}
+    <script>
+        function sideNav() {
+          if ($(window).width() < 769) {
+            $('.off-canvas-wrap').removeClass('move-right');
+            $('.left-off-canvas-toggle').show();
+          } else {
+            $('.off-canvas-wrap').addClass('move-right');
+            $('.left-off-canvas-toggle').hide();
+          }
+        }
+
+        $(document).ready(function(){
+          sideNav();
+          $(document).foundation();
+        });
+
+        $(window).resize(function() {
+          sideNav();
+        });
+    </script>
 </body>
 </html>
