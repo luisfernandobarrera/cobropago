@@ -17,6 +17,7 @@ bin/
 include/
 lib/
 local/
+node_modules/
 
 *.log
 pip-log.txt

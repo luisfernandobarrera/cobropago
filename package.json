@@ -1,0 +1,27 @@
+{
+  "name": "cobropago",
+  "version": "0.0.1",
+  "description": "A system for tracking budgets, expenses and financial life.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "webpack-bundle-tracker": "0.0.93"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joyinsky/cobropago.git"
+  },
+  "author": "Luis Fernando Barrera",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/joyinsky/cobropago/issues"
+  },
+  "homepage": "https://github.com/joyinsky/cobropago#readme"
+}
