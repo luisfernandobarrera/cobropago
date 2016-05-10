@@ -4,27 +4,27 @@ import { Link, RouteHandler } from 'react-router'
 let Sidebar = React.createClass({
     render(){
         return (
-            <aside class="left-off-canvas-menu">
-
-                <div class="icon-bar vertical five-up">
-                    <a class="item">
-                        <i class="fi-graph-bar"></i>
+            <aside className="left-off-canvas-menu">
+                <a className="left-off-canvas-toggle" href="#"><i className="fi-list"></i></a>
+                <div className="icon-bar vertical eight-up">
+                    <Link to={`/`} className="item">
+                        <i className="fi-graph-bar"></i>
                         <label>Dashboard</label>
-                    </a>
-                    <a class="item">
-                        <i class="fi-dollar-bill"></i>
+                    </Link>
+                    <Link to={`/login`} className="item">
+                        <i className="fi-dollar-bill"></i>
                         <label>Accounts</label>
-                    </a>
-                    <a class="item">
-                        <i class="fi-shopping-cart"></i>
+                    </Link>
+                    <Link to={`/about`} className="item">
+                        <i className="fi-shopping-cart"></i>
                         <label>Transactions</label>
-                    </a>
-                    <a class="item">
-                        <i class="fi-pricetag-multiple"></i>
+                    </Link>
+                    <a className="item">
+                        <i className="fi-pricetag-multiple"></i>
                         <label>Budget</label>
                     </a>
-                    <a class="item">
-                        <i class="fi-page-filled"></i>
+                    <a className="item">
+                        <i className="fi-page-filled"></i>
                         <label>Reports</label>
                     </a>
                 </div>
