@@ -24,24 +24,24 @@
 
     {% render_bundle 'main' %}
     <script>
-        function sideNav() {
-          if ($(window).width() < 769) {
-            $('.off-canvas-wrap').removeClass('move-right');
-            $('.left-off-canvas-toggle').show();
-          } else {
-            $('.off-canvas-wrap').addClass('move-right');
-            $('.left-off-canvas-toggle').hide();
-          }
-        }
-
-        $(document).ready(function(){
-          sideNav();
-          $(document).foundation();
-        });
-
-        $(window).resize(function() {
-          sideNav();
-        });
+{#        function sideNav() {#}
+{#          if ($(window).width() < 769) {#}
+{#            $('.off-canvas-wrap').removeClass('move-right');#}
+{#            $('.left-off-canvas-toggle').show();#}
+{#          } else {#}
+{#            $('.off-canvas-wrap').addClass('move-right');#}
+{#            $('.left-off-canvas-toggle').hide();#}
+{#          }#}
+{#        }#}
+{##}
+{#        $(document).ready(function(){#}
+{#          sideNav();#}
+{#          $(document).foundation();#}
+{#        });#}
+{##}
+{#        $(window).resize(function() {#}
+{#          sideNav();#}
+{#        });#}
     </script>
 </body>
 </html>
