@@ -1,24 +1,28 @@
 import React from 'react'
-import { Link, RouteHandler } from 'react-router'
+import NavLink from '../modules/navlink'
 
 let Sidebar = React.createClass({
+    handleSubmit(event) {
+        event.preventDefault();
+
+    },
     render(){
         return (
             <aside className="left-off-canvas-menu">
                 <a className="left-off-canvas-toggle" href="#"><i className="fi-list"></i></a>
                 <div className="icon-bar vertical eight-up">
-                    <Link to={`/`} className="item">
+                    <NavLink to={`/`} className="item" activeClassName="active" onlyActiveOnIndex={true}>
                         <i className="fi-graph-bar"></i>
                         <label>Dashboard</label>
-                    </Link>
-                    <Link to={`/login`} className="item">
+                    </NavLink>
+                    <NavLink to={`/login`} className="item" activeClassName="active">
                         <i className="fi-dollar-bill"></i>
                         <label>Accounts</label>
-                    </Link>
-                    <Link to={`/about`} className="item">
+                    </NavLink>
+                    <NavLink to={`/about`} className="item" activeClassName="active">
                         <i className="fi-shopping-cart"></i>
                         <label>Transactions</label>
-                    </Link>
+                    </NavLink>
                     <a className="item">
                         <i className="fi-pricetag-multiple"></i>
                         <label>Budget</label>
@@ -27,6 +31,7 @@ let Sidebar = React.createClass({
                         <i className="fi-page-filled"></i>
                         <label>Reports</label>
                     </a>
+
                 </div>
 
             </aside>

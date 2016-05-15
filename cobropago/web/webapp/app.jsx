@@ -13,7 +13,7 @@ let App = React.createClass({
                     <Header />
                     <Sidebar />
                     <div className="off-canvas-wrap">
-                      <main className="inner-wrap">{this.props.children || <Index />}</main>
+                      <main className="inner-wrap">{this.props.children}</main>
                     </div>
 
                     <a className="exit-off-canvas"></a>
