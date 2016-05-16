@@ -2,13 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 
-
-import App from './app';
+import App from './components/app';
 import About from './components/about';
 import Login from './components/login';
 import Index from './components/index';
 
-let routes = (
+export let router = (
     <Router history={hashHistory}>
         <Route path="/" component={App}>
             <IndexRoute component={Index} />
@@ -18,4 +17,4 @@ let routes = (
     </Router>
 );
 
-ReactDOM.render(routes, document.getElementById('react-app'));
+ReactDOM.render(router, document.getElementById('react-app'));

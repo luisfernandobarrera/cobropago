@@ -2,7 +2,6 @@ import React from 'react'
 import { Link, RouteHandler } from 'react-router'
 import Sidebar from './components/sidebar';
 import Header from './components/header'
-import Index from './components/index';
 
 let App = React.createClass({
 
