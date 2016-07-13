@@ -21,15 +21,37 @@ class Navigation extends React.Component {
     window.componentHandler.downgradeElements(this.refs.root);
   }
 
-  render() {
-    return (
-      <nav className="mdl-navigation" ref="root">
-        <Link className="mdl-navigation__link" to="/">Home</Link>
-        <Link className="mdl-navigation__link" to="/about">About</Link>
-        <Link className="mdl-navigation__link" to="/not-found">Not Found</Link>
-      </nav>
-    );
-  }
+  render(){
+        return (
+            <aside className="left-off-canvas-menu">
+                <a className="left-off-canvas-toggle" href="#"><i className="fi-list"></i></a>
+                <div className="icon-bar vertical eight-up">
+                    <Link to={`/`} className="item">
+                        <i className="fi-graph-bar"></i>
+                        <label>Dashboard</label>
+                    </Link>
+                    <Link to={`/login`} className="item">
+                        <i className="fi-dollar-bill"></i>
+                        <label>Accounts</label>
+                    </Link>
+                    <Link to={`/about`} className="item">
+                        <i className="fi-shopping-cart"></i>
+                        <label>Transactions</label>
+                    </Link>
+                    <a className="item">
+                        <i className="fi-pricetag-multiple"></i>
+                        <label>Budget</label>
+                    </a>
+                    <a className="item">
+                        <i className="fi-page-filled"></i>
+                        <label>Reports</label>
+                    </a>
+
+                </div>
+
+            </aside>
+        )
+    }
 
 }
 
