@@ -23,9 +23,6 @@ class Common(Configuration):
         'rest_framework.authtoken',  # token authentication
         'django_rq',                 # asynchronous queuing
         'versatileimagefield',       # image manipulation
-        'djangobower',
-        "compressor",
-        'webpack_loader',
 
         # Your apps
         'authentication',
@@ -72,48 +69,14 @@ class Common(Configuration):
     LOGIN_REDIRECT_URL = '/'
 
     # Static Files
-    WEB_ROOT = join(BASE_DIR, 'web', 'static')
+
     STATIC_ROOT = join(os.path.dirname(BASE_DIR), 'staticfiles')
     # STATICFILES_DIRS = []
     STATIC_URL = '/static/'
     STATICFILES_FINDERS = (
         'django.contrib.staticfiles.finders.FileSystemFinder',
         'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-        'djangobower.finders.BowerFinder',
-        'compressor.finders.CompressorFinder',
     )
-    BOWER_COMPONENTS_ROOT = os.path.join(WEB_ROOT, 'components')
-
-    BOWER_INSTALLED_APPS = (
-        'jquery',
-        'underscore',
-        'foundation',
-        'joyinsky-foundicons',
-        'flux',
-        'react',
-        'react-router',
-        'superagent',
-        'object-assign',
-    )
-
-    COMPRESS_PRECOMPILERS = (
-        ('text/x-sass', 'sass "{infile}" "{outfile}"'),
-        ('text/x-scss', 'sass --scss -I "%s/bower_components/foundation/scss" "{infile}" "{outfile}"'
-                        % BOWER_COMPONENTS_ROOT),
-    )
-
-    COMPRESS_CACHEABLE_PRECOMPILERS = ('text/x-scss',)
-    COMPRESS_ROOT = join(WEB_ROOT, 'bundles', 'css')
-
-    WEBPACK_LOADER = {
-        'DEFAULT': {
-            'CACHE': not DEBUG,
-            'BUNDLE_DIR_NAME': 'bundles/js/',  # must end with slash
-            'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
-            'POLL_INTERVAL': 0.1,
-            'IGNORE': ['.+\.hot-update.js', '.+\.map']
-        }
-    }
 
     # Media files
     MEDIA_ROOT = join(os.path.dirname(BASE_DIR), 'media')
@@ -146,6 +109,7 @@ class Common(Configuration):
     # Set DEBUG to False as a default for safety
     # https://docs.djangoproject.com/en/dev/ref/settings/#debug
     DEBUG = values.BooleanValue(False)
+
     for config in TEMPLATES:
         config['OPTIONS']['debug'] = DEBUG
 

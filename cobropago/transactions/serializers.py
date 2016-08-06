@@ -10,7 +10,7 @@ class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
         fields = ('id', 'name', 'balance')
-        read_only_fields = ('balance')
+        read_only_fields = ('balance',)
 
 
 class PayeeSerializer(serializers.ModelSerializer):
@@ -38,8 +38,8 @@ class TransactionSerializer(serializers.ModelSerializer):
         payee_serializer = validated_data.pop('payee')
         payee_name = payee_serializer.pop('name')
         user = validated_data['user']
-        payee, _  = Payee.objects.get_or_create(name=payee_name, user=user,
-                                            defaults=payee_serializer)
+        payee, _ = Payee.objects.get_or_create(name=payee_name, user=user,
+                                                defaults=payee_serializer)
 
         validated_data['payee'] = payee
         instance = Transaction.objects.create(**validated_data)

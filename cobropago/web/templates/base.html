@@ -1,6 +1,5 @@
 {% load static %}
-{% load compress %}
-{% load render_bundle from webpack_loader %}
+
 <!DOCTYPE html>
 <!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
 <html class="no-js" lang="en">
@@ -8,40 +7,10 @@
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foundation 5</title>
 
-    <link href="{% static '/static/components/bower_components/foundation/css/foundation.css' %}" rel="stylesheet" type="text/css"/>
-    <link href='{% static '/static/components/bower_components/joyinsky-foundicons/foundation-icons.css' %}' rel='stylesheet' type='text/css'>
-    {% compress css %}
-        <link href="{% static '/static/scss/style.scss' %}" type="text/x-scss" rel="stylesheet">
-    {% endcompress %}
 </head>
 <body>
-    <div id="react-app"></div>
+    <div id="react-app">Hello</div>
 
-    <script src="/static/components/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/static/components/bower_components/foundation/js/foundation.js"></script>
-
-    {% render_bundle 'main' %}
-    <script>
-{#        function sideNav() {#}
-{#          if ($(window).width() < 769) {#}
-{#            $('.off-canvas-wrap').removeClass('move-right');#}
-{#            $('.left-off-canvas-toggle').show();#}
-{#          } else {#}
-{#            $('.off-canvas-wrap').addClass('move-right');#}
-{#            $('.left-off-canvas-toggle').hide();#}
-{#          }#}
-{#        }#}
-{##}
-{#        $(document).ready(function(){#}
-{#          sideNav();#}
-{#          $(document).foundation();#}
-{#        });#}
-{##}
-{#        $(window).resize(function() {#}
-{#          sideNav();#}
-{#        });#}
-    </script>
 </body>
 </html>
