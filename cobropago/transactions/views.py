@@ -1,24 +1,53 @@
 from rest_framework import viewsets, filters
+from rest_framework.mixins import (RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
+                                   ListModelMixin, CreateModelMixin)
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from rest_framework import status
-from django.db import IntegrityError
-from common.mixins import ShowOnlyUserObjectsMixin, CreateModelWithUserMixin
-from .models import Account, Payee, Transaction
-from .serializers import AccountSerializer, PayeeSerializer, TransactionSerializer
+from common.mixins import ShowOnlyUserObjectsMixin, CreateModelWithUserMixin, NestedLedgerMixin
+from .models import Ledger, Account, Payee, Transaction
+from .serializers import LedgerSerializer, AccountSerializer, PayeeSerializer, TransactionSerializer
+from rest_framework.metadata import SimpleMetadata
+
+class LedgerViewSet(ShowOnlyUserObjectsMixin,
+                    CreateModelWithUserMixin,
+                    viewsets.ModelViewSet):
+    serializer_class = LedgerSerializer
+    permission_classes = (IsAuthenticated,)
+    queryset = Ledger.objects.all()
 
 
 class AccountViewSet(ShowOnlyUserObjectsMixin,
-                     CreateModelWithUserMixin,
-                     viewsets.ModelViewSet):
+                     RetrieveModelMixin,
+                     UpdateModelMixin,
+                     DestroyModelMixin,
+                     viewsets.GenericViewSet):
+    serializer_class = AccountSerializer
+    permission_classes = (IsAuthenticated,)
+    queryset = Account.objects.all()
+
+
+class NestedAccountViewSet(NestedLedgerMixin,
+                           CreateModelMixin,
+                           ListModelMixin,
+                           viewsets.GenericViewSet):
     serializer_class = AccountSerializer
     permission_classes = (IsAuthenticated,)
     queryset = Account.objects.all()
 
 
 class PayeeViewSet(ShowOnlyUserObjectsMixin,
-                   CreateModelWithUserMixin,
-                   viewsets.ModelViewSet):
+                   RetrieveModelMixin,
+                   UpdateModelMixin,
+                   DestroyModelMixin,
+                   viewsets.GenericViewSet):
+    serializer_class = PayeeSerializer
+    permission_classes = (IsAuthenticated,)
+    queryset = Payee.objects.all()
+
+
+class NestedPayeeViewSet(NestedLedgerMixin,
+                         CreateModelMixin,
+                         ListModelMixin,
+                         viewsets.GenericViewSet):
     serializer_class = PayeeSerializer
     permission_classes = (IsAuthenticated,)
     queryset = Payee.objects.all()
@@ -27,12 +56,21 @@ class PayeeViewSet(ShowOnlyUserObjectsMixin,
 
 
 class TransactionViewSet(ShowOnlyUserObjectsMixin,
-                         CreateModelWithUserMixin,
-                         viewsets.ModelViewSet):
+                         RetrieveModelMixin,
+                         UpdateModelMixin,
+                         DestroyModelMixin,
+                         viewsets.GenericViewSet):
+    serializer_class = TransactionSerializer
+    permission_classes = (IsAuthenticated,)
+    queryset = Transaction.objects.all()
+
+
+class NestedTransactionViewSet(NestedLedgerMixin,
+                               CreateModelMixin,
+                               ListModelMixin,
+                               viewsets.GenericViewSet):
     serializer_class = TransactionSerializer
     permission_classes = (IsAuthenticated,)
     queryset = Transaction.objects.all()
     filter_backends = (filters.SearchFilter,)
     search_fields = ('date', 'memo', 'payee__name')
-
-
