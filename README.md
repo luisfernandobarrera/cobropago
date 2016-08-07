@@ -3,6 +3,12 @@
 
 A simple but powerful income and expense administrator.. Check out the project's [documentation](http://joyinsky.github.io/cobropago/).
 
+# Prerequisites
+ - Python3
+ - [virtualenv](https://virtualenv.pypa.io/en/latest/)
+ - [postgresql](http://www.postgresql.org/)
+
+
 # Initialize the project
 Create and activate a virtualenv:
 
