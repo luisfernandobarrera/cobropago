@@ -28,7 +28,7 @@ class Test(Common):
     EMAIL_BACKEND = values.Value('django.core.mail.backends.console.EmailBackend')
 
     # DATABASE
-    DATABASES = values.DatabaseURLValue('postgres://localhost:5435/cobropago')
+    DATABASES = values.DatabaseURLValue('postgres://localhost:5432/cobropago')
 
     # Django RQ local settings
     RQ_QUEUES = {
