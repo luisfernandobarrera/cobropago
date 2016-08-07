@@ -16,9 +16,9 @@ class Test(Common):
     TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
     NOSE_ARGS = [
         BASE_DIR,
-        '--nologcapture',
+        # '--nologcapture',
         '--with-coverage',
-        '--with-progressive',
+        # '--with-progressive',
         '--cover-package={}'.format(BASE_DIR)
     ]
 
