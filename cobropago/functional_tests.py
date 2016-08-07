@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import unittest
+from django.test import TestCase
 from selenium import webdriver
 
-class HomePageTest(unittest.TestCase):
+
+class HomePageTest(TestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
 
@@ -15,5 +16,3 @@ class HomePageTest(unittest.TestCase):
         self.assertIn('Django', self.browser.title)
 
 
-if __name__ == '__main__':
-    unittest.main()
