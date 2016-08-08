@@ -39,8 +39,10 @@ class TransactionSerializer(serializers.ModelSerializer):
     def get_fields(self):
         fields = super(TransactionSerializer, self).get_fields()
         ledger = self.context['view'].kwargs['ledger_pk']
-        fields['payee'].queryset = Payee.objects.filter(user=self.context['view'].request.user).filter(ledger_id=ledger)
-        fields['account'].queryset = Account.objects.filter(user=self.context['view'].request.user).filter(ledger_id=ledger)
+        fields['payee'].queryset = Payee.objects.filter(user=self.context['view'].request.user)\
+            .filter(ledger_id=ledger)
+        fields['account'].queryset = Account.objects.filter(user=self.context['view'].request.user)\
+            .filter(ledger_id=ledger)
 
         return fields
 

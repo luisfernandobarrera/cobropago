@@ -1,4 +1,4 @@
-{% load static %}
+{% load render_bundle from webpack_loader %}
 
 <!DOCTYPE html>
 <!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
@@ -11,5 +11,7 @@
 </head>
 <body>
     <h1>cobropago</h1>
+    <div id="react-app"></div>
+    {% render_bundle 'main' %}
 </body>
 </html>

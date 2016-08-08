@@ -8,15 +8,19 @@ class Ledger(CommonModel):
     name = models.CharField(max_length=100)
     balance = models.DecimalField(max_digits=32, decimal_places=2, default=Decimal('0.00'))
 
-    def set_balance(self):
-        balance = self.accounts.aggregate(total=models.Sum('balance')).get('total', Decimal('0'))
+    def get_balance(self):
+        if self.accounts.exists():
+            return self.accounts.aggregate(total=models.Sum('balance')).get('total', Decimal('0.00'))
+        else:
+            return Decimal('0.00')
 
-        if self.id:
+    def set_balance(self):
+        if not self._state.adding:
+            balance = self.get_balance()
             self.__class__.objects.filter(id=self.id).update(balance=balance)
             self.refresh_from_db()
-
-    def __str__(self):
-        return self.name
+        else:
+            raise ValueError(_('Cannot set balance of unsaved ledger'))
 
 
 class WithLedgerModel(CommonModel):
@@ -36,21 +40,23 @@ class Account(WithLedgerModel):
     name = models.CharField(max_length=100)
     balance = models.DecimalField(max_digits=32, decimal_places=2, default=Decimal('0.00'))
 
+    def get_balance(self):
+        if self.transactions.exists():
+            return self.transactions.aggregate(total=models.Sum('amount')).get('total', Decimal('0.00'))
+        else:
+            return Decimal('0.00')
+
     def set_balance(self):
-        balance = self.transactions.aggregate(total=models.Sum('amount')).get('total', Decimal('0'))
-        if self.id:
+        if not self._state.adding:
+            balance = self.get_balance()
             self.__class__.objects.filter(id=self.id).update(balance=balance)
             self.refresh_from_db()
-
-    def __str__(self):
-        return self.name + " " + self.user.username
+        else:
+            raise ValueError(_('Cannot set balance of unsaved account'))
 
 
 class Payee(WithLedgerModel):
     name = models.CharField(max_length=300)
-
-    def __str__(self):
-        return self.name + " " + self.user.username
 
 
 class Transaction(WithLedgerModel):
@@ -73,3 +79,7 @@ class Transaction(WithLedgerModel):
         if not (self.payee.ledger == self.ledger):
             raise ValueError(_("The payee does not belong to the ledger"))
         super(Transaction, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.memo
+
