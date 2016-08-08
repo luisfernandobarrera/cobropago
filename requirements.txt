@@ -9,6 +9,7 @@ django-filter==0.13.0
 django-nose==1.4.4
 django-rq==0.9.1
 django-versatileimagefield==1.6
+django-webpack-loader==0.3.3
 djangorestframework==3.4.3
 drf-nested-routers==0.11.1
 ecdsa==0.13

@@ -23,6 +23,7 @@ class Common(Configuration):
         'rest_framework.authtoken',  # token authentication
         'django_rq',                 # asynchronous queuing
         'versatileimagefield',       # image manipulation
+        'webpack_loader',
 
         # Your apps
         'authentication',
@@ -77,6 +78,13 @@ class Common(Configuration):
         'django.contrib.staticfiles.finders.FileSystemFinder',
         'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     )
+
+    WEBPACK_LOADER = {
+        'DEFAULT': {
+            'BUNDLE_DIR_NAME': 'bundles/',
+            'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+        }
+    }
 
     # Media files
     MEDIA_ROOT = join(os.path.dirname(BASE_DIR), 'media')
