@@ -15,7 +15,7 @@ class WithTimeStampModel(models.Model):
 
 class WithUsernameModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="%(class)ss")
 
     class Meta:
         abstract = True
