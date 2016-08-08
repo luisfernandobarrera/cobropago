@@ -26,3 +26,6 @@ class WithUsernameModel(models.Model):
 class CommonModel(WithUsernameModel, WithTimeStampModel):
     class Meta(WithUsernameModel.Meta, WithTimeStampModel.Meta):
         abstract = True
+
+    def __str__(self):
+        return self.name
