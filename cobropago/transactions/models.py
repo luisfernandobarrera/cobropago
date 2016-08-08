@@ -27,6 +27,10 @@ class WithLedgerModel(CommonModel):
         unique_together = (('user', 'ledger', 'name'),)
         index_together = (('user', 'ledger', 'name'),)
 
+    def save(self, *args, **kwargs):
+        self.user = self.ledger.user
+        super(WithLedgerModel, self).save(*args, **kwargs)
+
 
 class Account(WithLedgerModel):
     name = models.CharField(max_length=100)
@@ -64,8 +68,6 @@ class Transaction(WithLedgerModel):
                           ('user', 'ledger', 'account', 'payee'))
 
     def save(self, *args, **kwargs):
-        if not (self.ledger.user == self.user):
-            raise ValueError(_("The ledger does not belong to the user"))
         if not (self.account.ledger == self.ledger):
             raise ValueError(_("The account does not belong to the ledger"))
         if not (self.payee.ledger == self.ledger):
