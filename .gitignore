@@ -6,6 +6,7 @@ html/
 htmlcov/
 coverage/
 .coverage
+coverage.xml
 .tox
 nosetests.xml
 build/
@@ -33,3 +34,4 @@ bundles/
 webpack-stats.json
 *CACHE/
 .sass-cache/
+__pycache__/

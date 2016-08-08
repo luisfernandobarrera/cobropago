@@ -5,6 +5,7 @@ omit = *migrations*,
        *test*,
        *admin*,
        ./cobropago/config/*,
-       ./cobropago/manage.py,
+       ./manage.py,
+       ./pycharm_manage.py,
        ./cobropago/wsgi.py,
        *__init__*

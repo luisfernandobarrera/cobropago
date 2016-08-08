@@ -9,9 +9,8 @@ class Ledger(CommonModel):
     balance = models.DecimalField(max_digits=32, decimal_places=2, default=Decimal('0.00'))
 
     def set_balance(self):
-        balance = self.accounts.aggregate(total=models.Sum('balance')).get('total', Decimal('0'))
-
         if self.id:
+            balance = self.accounts.aggregate(total=models.Sum('balance')).get('total', Decimal('0'))
             self.__class__.objects.filter(id=self.id).update(balance=balance)
             self.refresh_from_db()
 
@@ -43,14 +42,14 @@ class Account(WithLedgerModel):
             self.refresh_from_db()
 
     def __str__(self):
-        return self.name + " " + self.user.username
+        return self.name
 
 
 class Payee(WithLedgerModel):
     name = models.CharField(max_length=300)
 
     def __str__(self):
-        return self.name + " " + self.user.username
+        return self.name
 
 
 class Transaction(WithLedgerModel):

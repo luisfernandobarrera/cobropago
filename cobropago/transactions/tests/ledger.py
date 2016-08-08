@@ -43,3 +43,8 @@ class LedgerModelTest(TestCase):
         t.save()
 
         self.assertEqual(ledger.balance, Decimal('1234.56'))
+
+        ledger.set_balance()
+        self.assertEqual(ledger.balance, Decimal('1234.56'))
+
+
