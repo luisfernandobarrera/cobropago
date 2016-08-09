@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build-production": "webpack --config webpack.prod.config.js --progress --colors",
     "css-compile": "node-sass frontend/sass -o cobropago/web/static/bundles",
     "css-watch": "node-sass frontend/sass -o cobropago/web/static/bundles --watch",
     "webpack-watch": "webpack --config webpack.local.config.js --watch",
