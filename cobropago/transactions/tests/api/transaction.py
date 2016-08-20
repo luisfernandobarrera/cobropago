@@ -71,12 +71,11 @@ class TestTransactionDetailAPI(APITestCase):
         response = self.client.get(self.url)
         eq_(response.status_code, 200)
 
-    # def test_put_request_updates_a_transaction(self):
-    #     new_memo = fake.text()
-    #     payload = {'memo': new_memo}
-    #     response = self.client.put(self.url, payload)
-    #     print(response.__dict__)
-    #     eq_(response.status_code, 200)
-    #
-    #     transaction = Transaction.objects.get(pk=self.transaction.id)
-    #     eq_(transaction.name, new_memo)
+    def test_put_request_updates_a_transaction(self):
+        new_memo = fake.text()
+        payload = {'memo': new_memo}
+        response = self.client.patch(self.url, payload, format='json')
+        eq_(response.status_code, 200)
+
+        transaction = Transaction.objects.get(pk=self.transaction.id)
+        eq_(transaction.memo, new_memo)
