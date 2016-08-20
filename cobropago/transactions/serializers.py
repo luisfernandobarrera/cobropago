@@ -38,7 +38,10 @@ class TransactionSerializer(serializers.ModelSerializer):
 
     def get_fields(self):
         fields = super(TransactionSerializer, self).get_fields()
-        ledger = self.context['view'].kwargs['ledger_pk']
+        ledger = self.context['view'].kwargs.get('ledger_pk')
+        if not ledger:
+            if self.instance:
+                ledger = self.instance.ledger.pk
         fields['payee'].queryset = Payee.objects.filter(user=self.context['view'].request.user)\
             .filter(ledger_id=ledger)
         fields['account'].queryset = Account.objects.filter(user=self.context['view'].request.user)\
@@ -49,8 +52,13 @@ class TransactionSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         payee_serializer = validated_data.pop('payee')
         payee_name = payee_serializer.pop('name')
-        user = validated_data['user']
-        payee, _ = Payee.objects.get_or_create(name=payee_name, user=user, defaults=payee_serializer)
+
+        ledger = self.context['view'].kwargs.get('ledger_pk')
+        if not ledger:
+            if self.instance:
+                ledger = self.instance.ledger.pk
+
+        payee, _ = Payee.objects.get_or_create(name=payee_name, ledger_id=ledger, defaults=payee_serializer)
         validated_data['payee'] = payee
 
         instance = Transaction.objects.create(**validated_data)

@@ -1,10 +1,8 @@
 from django.core.urlresolvers import reverse
 from django.forms.models import model_to_dict
-from django.contrib.auth.hashers import check_password
 from nose.tools import ok_, eq_
 from rest_framework.test import APITestCase
 from faker import Faker
-from rest_framework.authtoken.models import Token
 from users.test.factories import UserFactory
 from ..factories import LedgerFactory
 from ..models import Ledger
