@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from common.mixins import ShowOnlyUserObjectsMixin, CreateModelWithUserMixin, NestedLedgerMixin
 from .models import Ledger, Account, Payee, Transaction
 from .serializers import LedgerSerializer, AccountSerializer, PayeeSerializer, TransactionSerializer
-from rest_framework.metadata import SimpleMetadata
+
 
 class LedgerViewSet(ShowOnlyUserObjectsMixin,
                     CreateModelWithUserMixin,

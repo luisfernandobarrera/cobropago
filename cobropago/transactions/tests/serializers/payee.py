@@ -2,9 +2,8 @@ from django.test import TestCase
 from django.forms.models import model_to_dict
 from nose.tools import eq_, ok_
 from ...serializers import PayeeSerializer
-from ..factories import PayeeFactory, LedgerFactory, UserFactory
-from users.models import User
-from transactions.models import Payee
+from ..factories import PayeeFactory, LedgerFactory
+from users.test.factories import UserFactory
 
 
 class PayeeSerializerTest(TestCase):
@@ -26,9 +25,14 @@ class PayeeSerializerTest(TestCase):
         serializer = PayeeSerializer(data=self.payee_data)
         ok_(serializer.is_valid())
 
-    def test_equalPayee(self):
+    def test_save(self):
         serializer = PayeeSerializer(data=self.payee_data)
         ok_(serializer.is_valid())
-        ok_(serializer.save(ledger=self.ledger, user=self.user))
+        payee = serializer.save(ledger=self.ledger, user=self.user)
+        ok_(str(payee))
+        ok_(str(payee.name))
+
+
+
 
 
