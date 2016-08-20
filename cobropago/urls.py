@@ -21,9 +21,9 @@ router.register(r'payees', PayeeViewSet)
 router.register(r'transactions', TransactionViewSet)
 
 ledger_router = routers.NestedSimpleRouter(router, 'ledgers', lookup='ledger', trailing_slash=False)
-ledger_router.register(r'accounts', NestedAccountViewSet)
-ledger_router.register(r'payees', NestedPayeeViewSet)
-ledger_router.register(r'transactions', NestedTransactionViewSet)
+ledger_router.register(r'accounts', NestedAccountViewSet, base_name='accounts')
+ledger_router.register(r'payees', NestedPayeeViewSet, base_name='payees')
+ledger_router.register(r'transactions', NestedTransactionViewSet, base_name='transactions')
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),

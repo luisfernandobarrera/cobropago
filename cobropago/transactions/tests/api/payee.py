@@ -6,52 +6,58 @@ from rest_framework.test import APITestCase
 from faker import Faker
 from rest_framework.authtoken.models import Token
 from users.test.factories import UserFactory
-from ..factories import LedgerFactory
-from ..models import Ledger
+from ..factories import LedgerFactory, PayeeFactory
+from ..models import Payee
 
 fake = Faker()
 
 
-class TestLedgerAPI(APITestCase):
+class TestPayeeAPI(APITestCase):
     """
-    Tests the /ledgers endpoint.
+    Tests the /accounts endpoint.
     """
 
-    def setUp(self):
-        self.url = reverse('ledger-list')
-        self.user = UserFactory.build()
-        self.user.save()
-        self.client.credentials(HTTP_AUTHORIZATION='Token {}'.format(self.user.auth_token))
-        self.ledger_data = model_to_dict(LedgerFactory.build())
-
-    def test_post_request_with_no_data_fails(self):
-        response = self.client.post(self.url, {})
-        eq_(response.status_code, 400)
-
-    def test_create_ledger(self):
-        response = self.client.post(self.url, self.ledger_data)
-        eq_(response.status_code, 201)
-
-
-class TestLedgerDetailAPI(APITestCase):
     def setUp(self):
         self.user = UserFactory.build()
         self.user.save()
         self.ledger = LedgerFactory.build()
         self.ledger.user = self.user
         self.ledger.save()
-        self.url = reverse('ledger-detail', kwargs={'pk': self.ledger.pk})
+        self.client.credentials(HTTP_AUTHORIZATION='Token {}'.format(self.user.auth_token))
+        self.url = reverse('payees-list', kwargs={'ledger_pk': self.ledger.pk})
+        self.payee_data = model_to_dict(PayeeFactory.build())
+
+    def test_post_request_with_no_data_fails(self):
+        response = self.client.post(self.url, {})
+        eq_(response.status_code, 400)
+
+    def test_create_ledger(self):
+        response = self.client.post(self.url, self.payee_data)
+        eq_(response.status_code, 201)
+
+
+class TestPayeeDetailAPI(APITestCase):
+    def setUp(self):
+        self.user = UserFactory.build()
+        self.user.save()
+        self.ledger = LedgerFactory.build()
+        self.ledger.user = self.user
+        self.ledger.save()
+        self.payee = PayeeFactory.build()
+        self.payee.ledger = self.ledger
+        self.payee.save()
+        self.url = reverse('payee-detail', kwargs={'pk': self.payee.pk})
         self.client.credentials(HTTP_AUTHORIZATION='Token {}'.format(self.user.auth_token))
 
     def test_get_request_returns_ledger(self):
         response = self.client.get(self.url)
         eq_(response.status_code, 200)
 
-    def test_put_request_updates_a_ledger(self):
+    def test_put_request_updates_a_account(self):
         new_name = fake.name()
         payload = {'name': new_name}
         response = self.client.put(self.url, payload)
         eq_(response.status_code, 200)
 
-        ledger = Ledger.objects.get(pk=self.ledger.id)
-        eq_(ledger.name, new_name)
+        payee = Payee.objects.get(pk=self.payee.id)
+        eq_(payee.name, new_name)
