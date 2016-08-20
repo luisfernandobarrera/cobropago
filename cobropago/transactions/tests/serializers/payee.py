@@ -2,13 +2,20 @@ from django.test import TestCase
 from django.forms.models import model_to_dict
 from nose.tools import eq_, ok_
 from ...serializers import PayeeSerializer
-from ..factories import PayeeFactory
+from ..factories import PayeeFactory, LedgerFactory, UserFactory
 from users.models import User
-from transactions.models import Ledger, Payee
+from transactions.models import Payee
 
 
 class PayeeSerializerTest(TestCase):
     def setUp(self):
+        user = UserFactory.build()
+        user.save()
+        self.user = user
+        ledger = LedgerFactory.build()
+        ledger.user = user
+        ledger.save()
+        self.ledger = ledger
         self.payee_data = model_to_dict(PayeeFactory.build())
 
     def test_serializer_with_empty_data(self):
@@ -22,13 +29,6 @@ class PayeeSerializerTest(TestCase):
     def test_equalPayee(self):
         serializer = PayeeSerializer(data=self.payee_data)
         ok_(serializer.is_valid())
-
-        user = User(username='testuser')
-        user.save()
-        ledger = Ledger(user=user, name="testledger")
-        ledger.save()
-
-        payee = serializer.save(ledger=ledger, user=user)
-        self.assertIsInstance(payee, Payee)
+        ok_(serializer.save(ledger=self.ledger, user=self.user))
 
 
