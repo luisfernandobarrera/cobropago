@@ -6,13 +6,6 @@ from rest_framework import serializers
 from .models import Ledger, Account, Payee, Transaction
 
 
-class LedgerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Ledger
-        fields = ('id', 'name', 'balance')
-        read_only_fields = ('balance',)
-
-
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
@@ -69,3 +62,16 @@ class TransactionSerializer(serializers.ModelSerializer):
         fields = ('id', 'date', 'account', 'memo', 'amount', 'payee', 'user', 'ledger')
         read_only_fields = ('user', 'ledger')
 
+
+class LedgerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ledger
+        fields = ('id', 'name', 'balance')
+        read_only_fields = ('balance',)
+
+
+class LedgerDetailSerializer(LedgerSerializer):
+    accounts = AccountSerializer(many=True)
+
+    class Meta(LedgerSerializer.Meta):
+        fields = ('id', 'name', 'accounts', 'balance')

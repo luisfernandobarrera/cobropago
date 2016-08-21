@@ -4,8 +4,9 @@ from rest_framework.mixins import (RetrieveModelMixin, UpdateModelMixin, Destroy
 from rest_framework.permissions import IsAuthenticated
 from common.mixins import ShowOnlyUserObjectsMixin, CreateModelWithUserMixin, NestedLedgerMixin
 from .models import Ledger, Account, Payee, Transaction
-from .serializers import LedgerSerializer, AccountSerializer, PayeeSerializer, TransactionSerializer
-from rest_framework.metadata import SimpleMetadata
+from .serializers import (LedgerSerializer, LedgerDetailSerializer,
+                          AccountSerializer, PayeeSerializer, TransactionSerializer)
+
 
 class LedgerViewSet(ShowOnlyUserObjectsMixin,
                     CreateModelWithUserMixin,
@@ -13,6 +14,12 @@ class LedgerViewSet(ShowOnlyUserObjectsMixin,
     serializer_class = LedgerSerializer
     permission_classes = (IsAuthenticated,)
     queryset = Ledger.objects.all()
+
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            return LedgerDetailSerializer
+        else:
+            return LedgerSerializer
 
 
 class AccountViewSet(ShowOnlyUserObjectsMixin,
