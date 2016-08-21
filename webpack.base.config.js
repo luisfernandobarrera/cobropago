@@ -5,7 +5,7 @@ var BundleTracker = require('webpack-bundle-tracker');
 module.exports = {
     context: __dirname,
 
-    entry: './frontend/js/index', // entry point of our app. assets/js/index.js should require other js modules and dependencies it needs
+    entry: './frontend/index', // entry point of our app. assets/js/index.js should require other js modules and dependencies it needs
 
     output: {
         path: path.resolve('./cobropago/web/static/bundles/'),
