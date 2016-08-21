@@ -1,6 +1,6 @@
 import os
 from configurations import values
-from .common import Common
+from .common import Common, BASE_DIR
 
 try:
     # Python 2.x
@@ -47,6 +47,12 @@ class Production(Common):
         )),
     )
 
+    WEBPACK_LOADER = {
+        'DEFAULT': {
+            'BUNDLE_DIR_NAME': 'bundles/dist',
+            'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json'),
+        }
+    }
 
     # Static files
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
@@ -80,3 +86,4 @@ class Production(Common):
     }
 
     Common.VERSATILEIMAGEFIELD_SETTINGS['create_images_on_demand'] = False
+

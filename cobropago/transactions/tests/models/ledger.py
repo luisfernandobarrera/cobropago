@@ -1,14 +1,14 @@
 from django.test import TestCase
 from django.utils import timezone
 from transactions.models import Ledger, Account, Payee, Transaction
-from users.models import User
+from users.test.factories import UserFactory
 from decimal import Decimal
 
 
 class LedgerModelTest(TestCase):
     def setUp(self):
         ledger = Ledger()
-        user1 = User(username="test_user")
+        user1 = UserFactory.build()
         user1.save()
         ledger.user = user1
         ledger.name = 'Test Ledger'
@@ -38,6 +38,10 @@ class LedgerModelTest(TestCase):
         self.assertEqual(self.ledger.balance, Decimal('1234.56'))
         self.assertEqual(self.ledger.get_balance(), Decimal('1234.56'))
         self.assertEqual(self.ledger.balance, Decimal('1234.56'))
+        balance = self.ledger.balance
+        self.ledger.set_balance()
+        self.assertEqual(self.ledger.balance, balance)
+        self.assertEqual(self.ledger.get_balance(), balance)
 
     def test_unsaved(self):
         l = Ledger()

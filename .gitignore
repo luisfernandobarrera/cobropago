@@ -32,6 +32,8 @@ site
 bower_components/
 bundles/
 webpack-stats.json
+webpack-stats-*.json
+
 *CACHE/
 .sass-cache/
 __pycache__/
