@@ -8,9 +8,10 @@ export default class Layout extends React.Component {
                 <div className="container-fluid">
                     <div className="layout row">
                         <Sidebar/>
+                        {this.props.children}
                     </div>
                 </div>
             </div>
-    )
+        )
     }
-    }
+}
