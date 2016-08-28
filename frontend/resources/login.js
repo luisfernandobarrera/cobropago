@@ -40,6 +40,12 @@ export function setCredentials(username, password) {
   }
 }
 
+export function logout() {
+  return {
+    type: LOGOUT
+  }
+}
+
 export function serverLogin(username, password) {
   return function (dispatch, getState) {
     let state = getState();
@@ -70,12 +76,6 @@ export function serverLogin(username, password) {
   }
 }
 
-
-export function logout() {
-  return {
-    type: LOGOUT
-  }
-}
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
