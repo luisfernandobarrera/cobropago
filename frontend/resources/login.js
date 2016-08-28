@@ -38,13 +38,6 @@ export function setCredentials(username, password) {
     }
 }
 
-export function login(username, password) {
-    return function(dispatch, getState) {
-        dispatch(setCredentials(username, password));
-        dispatch(serverLogin(username, password));
-    }
-}
-
 export function serverLogin(username, password) {
     return function(dispatch, getState) {
         let state = getState();
@@ -53,7 +46,9 @@ export function serverLogin(username, password) {
         data.append('username', username);
         data.append('password', password);
 
-        return fetch(url, {
+        dispatch(setCredentials(username, password));
+
+      return fetch(url, {
             method: "POST",
             body: data
         }).then(function(result){

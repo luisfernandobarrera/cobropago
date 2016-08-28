@@ -1,7 +1,7 @@
 import React from 'react';
 import * as styles from '../styles/signin.css';
 import {bindActionCreators} from 'redux';
-import {login} from '../resources/login';
+import {serverLogin} from '../resources/login';
 import {connect} from 'react-redux';
 
 class Login extends React.Component {
@@ -14,13 +14,14 @@ class Login extends React.Component {
         event.preventDefault();
         let username = this.refs.username.value.trim();
         let password = this.refs.password.value.trim();
-        console.log(this.props.login);
-        this.props.login(username, password);
-        console.log(this.props.state.login.loggedIn);
-        this.context.router.push('/');
+        this.props.serverLogin(username, password).then(
+          ()=>{
+            this.context.router.push('/')
+          });
+
     }
 
-    componentWillMount() {
+    componentDidMount() {
         if (this.props.state.login.loggedIn) {
             this.context.router.push('/');
         }
@@ -51,11 +52,11 @@ class Login extends React.Component {
 
 Login.contextTypes = {
     router: React.PropTypes.object.isRequired
-}
+};
 
 export default connect(
     (state)=>({state: state}),
-    (dispatch)=>({login: bindActionCreators(login, dispatch)})
+    (dispatch)=>({serverLogin: bindActionCreators(serverLogin, dispatch)})
 )(Login);
 
 
