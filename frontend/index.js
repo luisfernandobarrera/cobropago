@@ -9,7 +9,7 @@ import {syncHistoryWithStore, routerMiddleware} from 'react-router-redux';
 import App from './app';
 import Login from './components/login';
 import {Dashboard} from './components/dashboard';
-import {HelloWorld} from './components/helloworld';
+import HelloWorld from './components/helloworld';
 
 
 // const middleware = routerMiddleware(hashHistory);

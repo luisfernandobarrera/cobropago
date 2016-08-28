@@ -1,6 +1,5 @@
 import {Map} from 'immutable';
 import {apiHome} from './index';
-import 'whatwg-fetch';
 
 
 const LOGIN = 'LOGIN';
@@ -9,7 +8,7 @@ const RESET_PASSWORD = 'RESET_PASSWORD';
 const SET_TOKEN = 'SET_TOKEN';
 const SET_CREDENTIALS = 'SET_CREDENTIALS';
 
-let token = localStorage.getItem('token') || null;
+let token = localStorage.getItem('token');
 
 let initialState = Map({
   username: '',
@@ -76,6 +75,11 @@ export function serverLogin(username, password) {
   }
 }
 
+export const serverLogout = () => (
+  (dispatch, getState) => {
+    return dispatch(logout()) ;
+  }
+);
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
@@ -87,7 +91,7 @@ export function reducer(state = initialState, action) {
       localStorage.setItem('token', action.token);
       return state.set('token', action.token).set('loggedIn', true);
     case LOGOUT:
-      localStorage.setItem('token', null);
+      localStorage.removeItem('token');
       return state.set('token', null).set('loggedIn', false);
     default:
       return state;

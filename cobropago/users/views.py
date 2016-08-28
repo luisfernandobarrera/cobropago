@@ -1,8 +1,8 @@
 from rest_framework import viewsets, mixins
-from rest_framework.permissions import AllowAny
-
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.decorators import list_route
+from rest_framework.response import Response
 from common.permissions import IsOwnerOrReadOnly
-
 from .models import User
 from .serializers import CreateUserSerializer, UserSerializer
 
@@ -22,3 +22,11 @@ class UserViewSet(mixins.CreateModelMixin,
         self.serializer_class = CreateUserSerializer
         self.permission_classes = (AllowAny,)
         return super(UserViewSet, self).create(request, *args, **kwargs)
+
+    @list_route(methods=['get'])
+    def me(self, request, format=None):
+        content = {
+            'id': str(request.user.id),
+            'username': str(request.user.username)
+        }
+        return Response(content)

@@ -1,1 +1,1 @@
-export const apiHome = '/api/v1/'
+export const aome = '/api/v1/'
