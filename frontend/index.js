@@ -9,7 +9,7 @@ import {syncHistoryWithStore, routerMiddleware} from 'react-router-redux';
 import App from './app';
 import Login from './components/login';
 import {Dashboard} from './components/dashboard';
-import HelloWorld from './components/helloworld';
+import UserDetail from './components/userdetail';
 
 
 // const middleware = routerMiddleware(hashHistory);
@@ -21,8 +21,8 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App}>
-        <IndexRoute component={HelloWorld}/>
-        <Route path="dashboard" component={Dashboard}/>
+        <IndexRoute component={Dashboard}/>
+        <Route path="user" component={UserDetail}/>
       </Route>
       <Route path="/login" component={Login}/>
     </Router>

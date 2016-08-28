@@ -31,6 +31,11 @@ class TestUserAPI(APITestCase):
         eq_(user.username, self.user_data.get('username'))
         ok_(check_password(self.user_data.get('password'), user.password))
 
+    def test_me_withoutuser(self):
+        url = reverse('user-me')
+        response = self.client.get(url)
+        eq_(response.status_code, 403)
+
 
 class TestUserDetailAPI(APITestCase):
 
@@ -51,3 +56,9 @@ class TestUserDetailAPI(APITestCase):
 
         user = User.objects.get(pk=self.user.id)
         eq_(user.first_name, new_first_name)
+
+    def test_me_withcredentials(self):
+        url = reverse('user-me')
+        response = self.client.get(url)
+        eq_(response.status_code, 200)
+

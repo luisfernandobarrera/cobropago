@@ -21,7 +21,7 @@ class Sidebar extends React.Component {
     return (
       <ul className="nav nav-sidebar">
         <li><Link to="/">Home</Link></li>
-        <li><Link to={`dashboard`}>Overview</Link></li>
+        <li><Link to={`user`}>Overview</Link></li>
         <li><a href="#">Analytics</a></li>
         <li><a href="#">Export</a></li>
         <li><a href="#" onClick={this.logout}>Logout</a></li>

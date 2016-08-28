@@ -4,15 +4,14 @@ import {apiHome} from './index';
 
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
-const RESET_PASSWORD = 'RESET_PASSWORD';
 const SET_TOKEN = 'SET_TOKEN';
 const SET_CREDENTIALS = 'SET_CREDENTIALS';
 
 let token = localStorage.getItem('token');
+let username = localStorage.getItem('username') || '';
 
 let initialState = Map({
   username: '',
-  password: '',
   loggedIn: !!token,
   token: token
 });
@@ -59,7 +58,6 @@ export function serverLogin(username, password) {
       method: "POST",
       body: data
     }).then(function (result) {
-      dispatch(resetPassword());
       if (result.status === 200) {
         return result.json();
       } else {
@@ -84,14 +82,14 @@ export const serverLogout = () => (
 export function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_CREDENTIALS:
-      return state.set('username', action.username).set('password', action.password);
-    case RESET_PASSWORD:
-      return state.set('password', '');
+      localStorage.setItem('username', action.username);
+      return state.set('username', action.username);
     case SET_TOKEN:
       localStorage.setItem('token', action.token);
       return state.set('token', action.token).set('loggedIn', true);
     case LOGOUT:
       localStorage.removeItem('token');
+      localStorage.removeItem('username');
       return state.set('token', null).set('loggedIn', false);
     default:
       return state;
