@@ -19,13 +19,15 @@ class Sidebar extends React.Component {
 
   render() {
     return (
-      <ul className="nav nav-sidebar">
-        <li><Link to="/">Home</Link></li>
-        <li><Link to={`user`}>Overview</Link></li>
-        <li><a href="#">Analytics</a></li>
-        <li><a href="#">Export</a></li>
-        <li><a href="#" onClick={this.logout}>Logout</a></li>
-      </ul>
+      <div className="uk-panel uk-panel-box" data-uk-sticky="{top:35}">
+        <ul className="tm-nav uk-nav uk-nav-side">
+          <li className="uk-nav-header">Menu</li>
+          <li><Link to="/">Ledgers</Link></li>
+          <li><Link to={`user`}>Account</Link></li>
+          <li><a href="#" onClick={this.logout}>Logout</a></li>
+        </ul>
+      </div>
+
     )
 
   }

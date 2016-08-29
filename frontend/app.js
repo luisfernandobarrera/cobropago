@@ -1,8 +1,9 @@
+import $ from 'jquery/dist/jquery';
 import React from 'react';
 import Sidebar from './components/sidebar';
 import Login from './components/login';
-import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
-import Style from './styles/style.css'
+import UIKit from "uikit/dist/css/uikit.gradient.css";
+import UIJS from 'uikit/dist/js/uikit';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from './resources/login';
@@ -24,12 +25,12 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <div className="container-fluid">
-          <div className="layout row">
-            <div className="col-sm-3 col-md-2 sidebar">
+        <div className="uk-container uk-container-center uk-margin-top">
+          <div className="uk-grid">
+            <div className="tm-sidebar uk-width-medium-1-4 uk-row-first">
               <Sidebar />
             </div>
-            <div className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div className="uk-width-medium-3-4">
               {this.props.children}
             </div>
           </div>

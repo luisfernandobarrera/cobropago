@@ -60,14 +60,11 @@ export function serverLogin(username, password) {
     }).then(function (result) {
       if (result.status === 200) {
         return result.json();
-      } else {
-        throw "Error logging in";
       }
     }).then(function (jsonResult) {
       let token = jsonResult.token;
       dispatch(setToken(token));
     }).catch(function (err) {
-      alert('Couldn\'t set token');
     })
 
   }
