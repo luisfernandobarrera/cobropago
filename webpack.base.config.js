@@ -14,8 +14,8 @@ module.exports = {
 
     plugins: [
         new webpack.ProvidePlugin({
-            'Promise': 'es6-promise', // Thanks Aaron (https://gist.github.com/Couto/b29676dd1ab8714a818f#gistcomment-1584602)
-            // 'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch',
+            Promise: 'imports?this=>global!exports?global.Promise!es6-promise',
+            fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
             $: "jquery",
             jQuery: "jquery",
             "window.jQuery": "jquery"

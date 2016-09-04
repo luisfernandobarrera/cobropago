@@ -14,7 +14,9 @@
     "css-watch": "node-sass --include-path node_modules frontend/sass -o cobropago/web/static/bundles --watch",
     "webpack-watch": "webpack --config webpack.local.config.js --watch",
     "browser-sync": "browser-sync start --files \" cobropago/web/static/bundles/*.css, cobropago/web/static/bundles/*.js, cobropago/**/*.py, cobropago/web/templates/*.html\" --proxy 127.0.0.1:8000 --reload-delay=300 --reload-debounce=500",
-    "start": "concurrently --kill-others \"python manage.py runserver\" \"npm run browser-sync\" \"npm run webpack-watch\""
+    "start": "concurrently --kill-others \"python manage.py runserver\" \"npm run browser-sync\" \"npm run webpack-watch\"",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,7 @@
   },
   "homepage": "https://github.com/joyinsky/cobropago#readme",
   "devDependencies": {
+    "@kadira/storybook": "^2.5.2",
     "babel-core": "^6.13.2",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.5",
@@ -36,7 +39,9 @@
     "chai-immutable": "^1.6.0",
     "concurrently": "^2.2.0",
     "css-loader": "^0.23.1",
+    "exports-loader": "^0.6.3",
     "file-loader": "^0.9.0",
+    "imports-loader": "^0.6.5",
     "mocha": "^3.0.2",
     "node-sass": "^3.8.0",
     "react-hot-loader": "^1.3.0",

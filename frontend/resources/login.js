@@ -72,7 +72,10 @@ export function serverLogin(username, password) {
 
 export const serverLogout = () => (
   (dispatch, getState) => {
-    return dispatch(logout()) ;
+    return new Promise((resolve, reject) => {
+      dispatch(logout());
+      resolve();
+    });
   }
 );
 
