@@ -6,10 +6,8 @@ import {connect} from 'react-redux';
 
 
 class LedgerView extends React.Component {
-  componentWillMount() {
-    this.props.actions.fetchLedgers().then(() => {
-      console.log(this.props.state);
-    });
+  componentWillUpdate() {
+    this.props.actions.fetchLedgers();
   }
 
   render() {
@@ -23,7 +21,7 @@ class LedgerView extends React.Component {
 }
 
 export default connect(
-  (state)=>({state: state.ledgers}),
+  (state)=>({state: state.ledgers, login: state.login}),
   (dispatch)=>({actions: bindActionCreators(actions, dispatch)})
 )(LedgerView);
 

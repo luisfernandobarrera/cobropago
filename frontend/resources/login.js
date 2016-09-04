@@ -48,7 +48,7 @@ export function logout() {
 export function serverLogin(username, password) {
   return function (dispatch, getState) {
     let state = getState();
-    let url = apiHome + 'api-token-auth/';
+    let url = apiHome + '/api-token-auth/';
     let data = new FormData();
     data.append('username', username);
     data.append('password', password);
