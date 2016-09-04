@@ -6,6 +6,7 @@ const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
 const SET_TOKEN = 'SET_TOKEN';
 const SET_CREDENTIALS = 'SET_CREDENTIALS';
+const RESET_PASSWORD = 'RESET_PASSWORD';
 
 let token = localStorage.getItem('token');
 let username = localStorage.getItem('username') || '';

@@ -5,6 +5,7 @@ import UIKit from "uikit/dist/css/uikit.gradient.css";
 import UIJS from 'uikit/dist/js/uikit';
 import LoginForm from '../loginform';
 import Sidebar from '../sidebar';
+import LedgerView from '../ledgers';
 
 storiesOf('Login', module)
   .add('Login', () => (
@@ -29,4 +30,10 @@ storiesOf('Sidebar', module)
   })
   .add('Menu', () => (
     <Sidebar logout={action('logout')} />
+  ));
+
+
+storiesOf('Ledgers', module)
+  .add('With Ledgers', () => (
+    <LedgerView ledgers={[{id: 12345, name: 'My ledger'}, {id: 112412, name: 'Personal'}, {id: 12412, name: 'Company'}]}/>
   ));
