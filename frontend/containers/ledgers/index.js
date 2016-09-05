@@ -12,6 +12,7 @@ class LedgerView extends React.Component {
   constructor(props) {
     super(props);
     this.create = this.create.bind(this);
+    this.onDelete = this.onDelete.bind(this);
   }
 
   componentDidMount() {
@@ -27,12 +28,18 @@ class LedgerView extends React.Component {
     });
   }
 
+  onDelete(id) {
+    this.props.actions.deleteLedger(id).then(() => {
+      this.props.actions.fetchLedgers();
+    })
+  }
+
   render() {
     let results = this.props.state.items.results || [];
     return (
       <div>
         <NewLedgerForm onSubmit={this.create} />
-        <LedgerList ledgers={results} />
+        <LedgerList ledgers={results} onDelete={this.onDelete} />
       </div>
     );
   }

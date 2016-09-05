@@ -35,5 +35,8 @@ storiesOf('Sidebar', module)
 
 storiesOf('Ledgers', module)
   .add('With Ledgers', () => (
-    <LedgerView ledgers={[{id: 12345, name: 'My ledger'}, {id: 112412, name: 'Personal'}, {id: 12412, name: 'Company'}]}/>
+    <LedgerView onDelete={()=> {}}
+                ledgers={[{id: 12345, name: 'My ledger'},
+                          {id: 11241, name: 'Personal'},
+                          {id: 12412, name: 'Company'}]}/>
   ));
