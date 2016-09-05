@@ -1,11 +1,12 @@
 import {Map} from 'immutable';
 import {apiHome} from './index';
-
+import {defaultHeaders} from 'redux-rest-resource';
 
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
 const SET_TOKEN = 'SET_TOKEN';
 const SET_CREDENTIALS = 'SET_CREDENTIALS';
+const RESET_PASSWORD = 'RESET_PASSWORD';
 
 let token = localStorage.getItem('token');
 let username = localStorage.getItem('username') || '';
@@ -47,7 +48,7 @@ export function logout() {
 export function serverLogin(username, password) {
   return function (dispatch, getState) {
     let state = getState();
-    let url = apiHome + 'api-token-auth/';
+    let url = apiHome + '/api-token-auth/';
     let data = new FormData();
     data.append('username', username);
     data.append('password', password);
@@ -72,7 +73,10 @@ export function serverLogin(username, password) {
 
 export const serverLogout = () => (
   (dispatch, getState) => {
-    return dispatch(logout()) ;
+    return new Promise((resolve, reject) => {
+      dispatch(logout());
+      resolve();
+    });
   }
 );
 
@@ -83,10 +87,12 @@ export function reducer(state = initialState, action) {
       return state.set('username', action.username);
     case SET_TOKEN:
       localStorage.setItem('token', action.token);
+      Object.assign(defaultHeaders, {Authorization: `Token ${action.token}`});
       return state.set('token', action.token).set('loggedIn', true);
     case LOGOUT:
       localStorage.removeItem('token');
       localStorage.removeItem('username');
+      Object.assign(defaultHeaders, {Authorization: ''});
       return state.set('token', null).set('loggedIn', false);
     default:
       return state;
