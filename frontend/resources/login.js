@@ -1,6 +1,6 @@
 import {Map} from 'immutable';
 import {apiHome} from './index';
-
+import {defaultHeaders} from 'redux-rest-resource';
 
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
@@ -87,10 +87,12 @@ export function reducer(state = initialState, action) {
       return state.set('username', action.username);
     case SET_TOKEN:
       localStorage.setItem('token', action.token);
+      Object.assign(defaultHeaders, {Authorization: `Token ${action.token}`});
       return state.set('token', action.token).set('loggedIn', true);
     case LOGOUT:
       localStorage.removeItem('token');
       localStorage.removeItem('username');
+      Object.assign(defaultHeaders, {Authorization: ''});
       return state.set('token', null).set('loggedIn', false);
     default:
       return state;
