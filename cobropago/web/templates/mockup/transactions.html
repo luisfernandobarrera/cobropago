@@ -1,0 +1,16 @@
+{% extends 'mockup/loggedin.html' %}
+
+{% block menu %}
+<li><a href="ledger">Home</a></li>
+<li class="active"><a href="transactions">Transactions <span class="sr-only">(current)</span></a></li>
+<li><a href="reports">Reports</a></li>
+{% endblock menu %}
+
+{% block actions %}
+<form class="navbar-form navbar-left">
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search">
+    </div>
+</form>
+{% endblock actions %}
+
