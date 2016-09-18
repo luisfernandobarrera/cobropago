@@ -1,67 +1,60 @@
 {% extends 'mockup/loggedin.html' %}
 
 {% block actions %}
-<button class="btn btn-primary navbar-btn navbar-left" data-toggle="modal" data-target="#add-ledger">
-    <i class="fa fa-plus"></i> New Ledger
-</button>
-<form class="navbar-form navbar-left">
-    <div class="form-group">
-        <input type="text" class="form-control" placeholder="Search Ledgers">
-    </div>
-</form>
+    <button class="btn btn-primary navbar-btn navbar-left" data-toggle="modal" data-target="#add-ledger">
+        <i class="fa fa-plus"></i> New Ledger
+    </button>
+    <form class="navbar-form navbar-left">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search Ledgers">
+        </div>
+    </form>
 {% endblock actions %}
 
 {% block modals %}
-<div class="modal fade" id="add-ledger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">New Ledger</h4>
-      </div>
-      <div class="modal-body">
+    <div class="modal fade" id="add-ledger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">New Ledger</h4>
+                </div>
+                <div class="modal-body">
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 {% endblock modals %}
 
 {% block content %}
-<div class="container">
-    <div class="pricing">
-        <ul>
-            {% for i in 'xxxxxxxxx' %}
-            <li class="unit price-primary">
-                <div class="price-title">
-                    <h3>My Ledger</h3>
-                    <p>Presupuesto de Luis Fernando</p>
-                    <p>
-                        <small>Last used: yesterday</small>
-                    </p>
+    <div class="container">
+        <div class="row">
+            {% for i in 'xxxxx' %}
+                <div class="col-md-4 col-lg-3">
+                    <div class="thumbnail">
+                        <div class="caption text-center">
+                            <h3>My Ledger</h3>
+                            <p>Presupuesto de Luis Fernando</p>
+                            <p>
+                                <small>Last used: yesterday</small>
+                            </p>
+                            <p>
+                                <a href="ledger">
+                                    <button type="button" class="btn btn-success">Go</button>
+                                </a>
+                                <button type="button" class="btn btn-info">Edit</button>
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="price-body">
-                    <h4>+$120,500 MXN</h4>
-                    <p></p>
-                    <ul>
-                        <li>4 accounts</li>
-                        <li>15000 transactions</li>
-                        <li>Base Currency: MXN</li>
-                    </ul>
-                </div>
-                <div class="price-foot">
-                    <a href="ledger"><button type="button" class="btn btn-success">Go</button></a>
-                    <button type="button" class="btn btn-info">Edit</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
-                </div>
-            </li>
             {% endfor %}
-        </ul>
+        </div>
     </div>
-
-</div>
 {% endblock content %}
