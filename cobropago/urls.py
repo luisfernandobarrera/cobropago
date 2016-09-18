@@ -10,7 +10,7 @@ from rest_framework_nested import routers
 from users.views import UserViewSet
 from transactions.views import (AccountViewSet, PayeeViewSet, TransactionViewSet, LedgerViewSet,
                                 NestedAccountViewSet, NestedPayeeViewSet, NestedTransactionViewSet)
-from web.views import HomePageView, mockup_view
+from web.views import HomePageView, mockup_view, schema_view
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', UserViewSet)
@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^api/v1/', include('authentication.urls')),
     url(r'^api/v1/', include(router.urls)),
     url(r'^api/v1/', include(ledger_router.urls)),
+    url(r'^api/', schema_view),
     # the 'api-root' from django rest-frameworks default router
     # http://www.django-rest-framework.org/api-guide/routers/#defaultrouter
     # url(r'^$', RedirectView.as_view(url=reverse_lazy('api-root'), permanent=False)),

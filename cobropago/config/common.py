@@ -21,6 +21,7 @@ class Common(Configuration):
         # Third party apps
         'rest_framework',            # utilities for rest apis
         'rest_framework.authtoken',  # token authentication
+        'rest_framework_swagger',
         'django_rq',                 # asynchronous queuing
         'versatileimagefield',       # image manipulation
         'webpack_loader',
