@@ -34,7 +34,7 @@ urlpatterns = [
     # the 'api-root' from django rest-frameworks default router
     # http://www.django-rest-framework.org/api-guide/routers/#defaultrouter
     # url(r'^$', RedirectView.as_view(url=reverse_lazy('api-root'), permanent=False)),
-    url(r'^mockup$', mockup_view),
+    url(r'^mockup/$', mockup_view),
     url(r'^mockup/(?P<template_name>\w+)$', mockup_view),
     url(r'^$', HomePageView.as_view()),
 
