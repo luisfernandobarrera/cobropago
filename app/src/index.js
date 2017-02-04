@@ -1,7 +1,6 @@
 // src/index.js
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-sass';
 import $ from 'jquery/dist/jquery';
 import Vue from 'vue';
 import App from './components/App.vue';
