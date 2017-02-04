@@ -9,7 +9,6 @@ coverage/
 coverage.xml
 .tox
 nosetests.xml
-build/
 dist/
 *.egg-info/
 MANIFEST
@@ -19,6 +18,11 @@ include/
 lib/
 local/
 node_modules/
+npm-debug.log
+test/unit/coverage
+test/e2e/reports
+selenium-debug.log
+
 
 *.log
 pip-log.txt
