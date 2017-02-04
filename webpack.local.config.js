@@ -4,10 +4,6 @@ var BundleTracker = require('webpack-bundle-tracker');
 
 var config = require('./webpack.base.config.js');
 
-config.entry = [
-    './frontend/index'
-];
-
 config.plugins = config.plugins.concat([
     new BundleTracker({filename: './cobropago/webpack-stats.json'}),
 ]);
