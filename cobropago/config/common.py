@@ -10,6 +10,7 @@ class Common(Configuration):
     DEBUG = values.BooleanValue(True)
 
     INSTALLED_APPS = (
+        #'suit',
         'django.contrib.admin',
         'django.contrib.auth',
         'django.contrib.contenttypes',
@@ -25,6 +26,7 @@ class Common(Configuration):
         'django_rq',                 # asynchronous queuing
         'versatileimagefield',       # image manipulation
         'webpack_loader',
+
 
         # Your apps
         'authentication',
