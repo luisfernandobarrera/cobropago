@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "description": "A powerful expense and income manager",
   "main": "index.js",
+  "author": "Luis Fernando Barrera",
+  "license": "SEE LICENSE IN LICENSE",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/joyinsky/cobropago/issues"
+  },
   "directories": {
     "doc": "docs"
   },
@@ -21,11 +27,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/joyinsky/cobropago.git"
-  },
-  "author": "Luis Fernando Barrera",
-  "license": "SEE LICENSE IN LICENSE",
-  "bugs": {
-    "url": "https://github.com/joyinsky/cobropago/issues"
   },
   "homepage": "https://github.com/joyinsky/cobropago#readme",
   "devDependencies": {
