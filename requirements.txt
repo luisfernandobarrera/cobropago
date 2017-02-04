@@ -13,7 +13,6 @@ django-filter==1.0.1
 django-nose==1.4.4
 django-rest-swagger==2.1.1
 django-rq==0.9.4
-# django-suit==0.2.24
 django-versatileimagefield==1.6.2
 django-webpack-loader==0.4.1
 djangorestframework==3.5.3
@@ -37,7 +36,6 @@ paramiko==2.1.1
 pexpect==4.2.1
 pickleshare==0.7.4
 Pillow==4.0.0
-pkg-resources==0.0.0
 prompt-toolkit==1.0.10
 psycopg2==2.6.2
 ptyprocess==0.5.1
