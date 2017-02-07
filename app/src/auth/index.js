@@ -51,8 +51,8 @@ export default {
   },
 
   checkAuth() {
-    var token = localStorage.getItem('token');
-    if(token) {
+    let token = localStorage.getItem('token');
+    if (!!token) {
       this.user.authenticated = true
     }
     else {
@@ -62,8 +62,12 @@ export default {
 
   // The object to be passed as a header for authenticated requests
   getAuthHeader() {
-    return {
-      'Authorization': 'Token ' + localStorage.getItem('token')
-    }
+    let token = localStorage.getItem('token');
+    if (!!token)
+      return {
+        'Authorization': `Token ${token}`
+      };
+    else
+      return {};
   }
 }
