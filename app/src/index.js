@@ -41,12 +41,12 @@ import auth from './auth'
 // Check the users auth status when the app starts
 auth.checkAuth();
 
+
 function getCookie(name) {
   var value = "; " + document.cookie;
   var parts = value.split("; " + name + "=");
   if (parts.length == 2) return parts.pop().split(";").shift();
 }
-
 
 Vue.http.headers.common['X-CSRFToken'] = getCookie('csrftoken');
 
