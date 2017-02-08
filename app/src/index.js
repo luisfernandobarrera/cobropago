@@ -1,7 +1,4 @@
 // src/index.js
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
-import $ from 'jquery/dist/jquery';
 import Vue from 'vue';
 import App from './components/App.vue';
 import Home from './components/Home.vue';

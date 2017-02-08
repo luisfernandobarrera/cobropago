@@ -19,8 +19,8 @@ module.exports = {
       fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
       $: "jquery",
       jQuery: "jquery",
-      "window.jQuery": "jquery"
-
+      "window.jQuery": "jquery",
+      foundation: "foundation"
     }),
     new BundleTracker({filename: './cobropago/webpack-stats.json'})
   ],
@@ -40,10 +40,15 @@ module.exports = {
         loader: 'babel',
         exclude: /node_modules/
       },
-
+      {
+        // for some modules like foundation
+        test: /\.scss$/,
+        exclude: [/node_modules/], // sassLoader will include node_modules explicitly
+        loader: ExtractTextPlugin.extract("style", "css?sourceMap!postcss!sass?sourceMap&outputStyle=expanded")
+      },
       {
         test: /\.css$/,
-        loader: "style-loader!css-loader"
+        loader: ExtractTextPlugin.extract("style", "css?sourceMap!postcss")
       },
       {
         test: /\.png$/,
