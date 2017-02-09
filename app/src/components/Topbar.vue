@@ -9,6 +9,7 @@
         <li><a v-link="'ledgers'" v-if="user.authenticated">Ledgers</a></li>
         <li><a v-link="'login'" v-if="user.authenticated" @click="logout()">Logout</a></li>
       </ul>
+
     </div>
   </div>
 </template>
