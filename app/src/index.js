@@ -1,6 +1,8 @@
 // src/index.js
-import './styles/foundation.scss'
-import './styles/index.scss'
+import './styles/foundation.scss';
+import './styles/index.scss';
+import { foundation } from 'foundation-sites/js/foundation.core';
+import 'foundation-sites/js/foundation.util.mediaQuery';
 import Vue from 'vue';
 import App from './components/App.vue';
 import Home from './components/Home.vue';
@@ -52,3 +54,10 @@ Vue.http.headers.common['X-CSRFToken'] = getCookie('csrftoken');
 
 // Start the app on the #app div
 router.start(App, '#app');
+
+$.fn.foundation = foundation;
+
+$(document).ready(function($){
+  $(document).foundation();
+});
+

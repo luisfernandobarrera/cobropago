@@ -21,7 +21,7 @@ module.exports = {
       $: "jquery",
       jQuery: "jquery",
       "window.jQuery": "jquery",
-      foundation: "Foundation"
+      foundation: "foundation-sites"
     }),
     new ExtractTextPlugin("app.css"),
     new BundleTracker({filename: './cobropago/webpack-stats.json'})
@@ -33,6 +33,10 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue'
+      },
+      {
+        test: /(foundation\.core)/,
+        loader: 'exports?foundation=jQuery.fn.foundation'
       },
       // process *.js files using babel-loader
       // the exclude pattern is important so that we don't
@@ -87,6 +91,9 @@ module.exports = {
 
   resolve: {
     modulesDirectories: ['node_modules', 'bower_components'],
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    alias: {
+      foundation: 'foundation-sites/js/foundation.core'
+    }
   }
 };
