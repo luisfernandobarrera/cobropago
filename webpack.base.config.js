@@ -23,7 +23,7 @@ module.exports = {
       "window.jQuery": "jquery",
       foundation: "Foundation"
     }),
-    new ExtractTextPlugin("./cobropago/web/static/styles/app.css"),
+    new ExtractTextPlugin("app.css"),
     new BundleTracker({filename: './cobropago/webpack-stats.json'})
   ],
 

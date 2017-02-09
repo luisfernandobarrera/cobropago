@@ -3,7 +3,7 @@
   <template>
     <div class="col-sm-6 col-sm-offset-3">
       <div class="quote-area" v-if="quote">
-       <ul id="example-1">
+       <ul>
           <li v-for="ledger in ledgers">
             {{ ledger.name }}
           </li>
