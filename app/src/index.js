@@ -7,13 +7,18 @@ import Vue from 'vue';
 import App from './components/App.vue';
 import Home from './components/Home.vue';
 import Ledgers from './components/Ledgers.vue';
+import axios from 'axios';
 // import Signup from './components/Signup.vue';
 import Login from './components/Login.vue';
 import VueRouter from 'vue-router';
-import VueResource from 'vue-resource';
-Vue.use(VueResource);
+//import VueResource from 'vue-resource';
+//Vue.use(VueResource);
 Vue.use(VueRouter);
 
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
+axios.defaults.xsrfCookieName = 'csrftoken';
+
+export let Axios = axios;
 export let router = new VueRouter();
 
 // Set up routing and match routes to components
@@ -44,12 +49,11 @@ auth.checkAuth();
 
 
 function getCookie(name) {
-  var value = "; " + document.cookie;
-  var parts = value.split("; " + name + "=");
+  let value = "; " + document.cookie;
+  let parts = value.split("; " + name + "=");
   if (parts.length == 2) return parts.pop().split(";").shift();
 }
 
-Vue.http.headers.common['X-CSRFToken'] = getCookie('csrftoken');
 
 
 // Start the app on the #app div

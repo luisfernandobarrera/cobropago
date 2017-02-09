@@ -47,7 +47,6 @@ class Common(Configuration):
     )
 
     ROOT_URLCONF = 'urls'
-
     SECRET_KEY = 'Not a secret'
     WSGI_APPLICATION = 'wsgi.application'
 
