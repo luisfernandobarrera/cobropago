@@ -1,12 +1,13 @@
 var path = require("path");
 var webpack = require('webpack');
 var BundleTracker = require('webpack-bundle-tracker');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
 module.exports = {
   context: __dirname,
 
-  entry: ['./app/src/index', './app/src/auth/index'],
+  entry: ['./app/src/index.js', './app/src/auth/index.js'],
 
   output: {
     path: path.resolve('./cobropago/web/static/bundles/'),
@@ -20,8 +21,9 @@ module.exports = {
       $: "jquery",
       jQuery: "jquery",
       "window.jQuery": "jquery",
-      foundation: "foundation"
+      foundation: "Foundation"
     }),
+    new ExtractTextPlugin("./cobropago/web/static/styles/app.css"),
     new BundleTracker({filename: './cobropago/webpack-stats.json'})
   ],
 

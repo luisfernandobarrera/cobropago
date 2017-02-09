@@ -1,6 +1,6 @@
 // src/index.js
-import 'styles/foundation.scss'
-import 'styles/index.scss'
+import './styles/foundation.scss'
+import './styles/index.scss'
 import Vue from 'vue';
 import App from './components/App.vue';
 import Home from './components/Home.vue';
