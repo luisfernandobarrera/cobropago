@@ -59,3 +59,12 @@ class TestPayeeDetailAPI(APITestCase):
 
         payee = Payee.objects.get(pk=self.payee.id)
         eq_(payee.name, new_name)
+
+    def test_put_request_updates_a_payee_with_spaces(self):
+        new_name = "   " + fake.name() + "     "
+        payload = {'name': new_name}
+        response = self.client.put(self.url, payload)
+        eq_(response.status_code, 200)
+
+        payee = Payee.objects.get(pk=self.payee.id)
+        eq_(payee.name, new_name.strip())

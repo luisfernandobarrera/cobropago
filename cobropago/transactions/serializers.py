@@ -25,6 +25,9 @@ class PayeeSerializer(serializers.ModelSerializer):
         instance, _ = Payee.objects.get_or_create(name=name, user=user, defaults=validated_data)
         return instance
 
+    def validate_name(self, name):
+        return name.strip()
+
 
 class TransactionSerializer(serializers.ModelSerializer):
     payee = PayeeSerializer()

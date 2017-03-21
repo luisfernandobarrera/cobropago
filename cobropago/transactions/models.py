@@ -59,6 +59,8 @@ class Payee(WithLedgerModel):
     name = models.CharField(max_length=300)
 
 
+
+
 class Transaction(WithLedgerModel):
     date = models.DateField(db_index=True)
     check = models.CharField(max_length=30, blank=True)

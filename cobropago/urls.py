@@ -30,12 +30,12 @@ urlpatterns = [
     url(r'^api/v1/', include('authentication.urls')),
     url(r'^api/v1/', include(router.urls)),
     url(r'^api/v1/', include(ledger_router.urls)),
-    url(r'^api/', schema_view),
+    url(r'^$', schema_view),
     # the 'api-root' from django rest-frameworks default router
     # http://www.django-rest-framework.org/api-guide/routers/#defaultrouter
     # url(r'^$', RedirectView.as_view(url=reverse_lazy('api-root'), permanent=False)),
-    url(r'^mockup/$', mockup_view),
-    url(r'^mockup/(?P<template_name>\w+)$', mockup_view),
-    url(r'^$', HomePageView.as_view()),
+    # url(r'^mockup/$', mockup_view),
+    # url(r'^mockup/(?P<template_name>\w+)$', mockup_view),
+    # url(r'^$', HomePageView.as_view()),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
