@@ -20,9 +20,7 @@
     "css-watch": "node-sass --include-path node_modules frontend/sass -o cobropago/web/static/bundles --watch",
     "webpack-watch": "webpack --config webpack.local.config.js --watch",
     "browser-sync": "browser-sync start --files \" cobropago/web/static/bundles/*.css, cobropago/web/static/bundles/*.js, cobropago/**/*.py, cobropago/web/templates/*.html\" --proxy 127.0.0.1:8000 --reload-delay=300 --reload-debounce=500",
-    "start": "concurrently --kill-others \"python manage.py runserver\" \"npm run browser-sync\" \"npm run webpack-watch\" \"npm run storybook\"",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "start": "concurrently --kill-others \"python manage.py runserver\" \"npm run browser-sync\" \"npm run webpack-watch\"",
     "build-debug": "webpack --config webpack.local.config.js --progress --profile --colors --display-error-details --display-cached"
   },
   "repository": {
