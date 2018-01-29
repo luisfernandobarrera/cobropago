@@ -13,6 +13,7 @@ RUN apt-get upgrade -y
 RUN apt-get install -y apt-utils sudo zsh wget curl sudo vim
 RUN apt-get install -y \
       build-essential iptables git mercurial python-dev screen \
+      openssl libssl-dev \
       rubygems npm nodejs nodejs-legacy awscli yarn \
       postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR postgresql-plpython-$PG_MAJOR \
       python-psycopg2 python-mysqldb \

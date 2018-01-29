@@ -61,7 +61,7 @@ class Common(Configuration):
     DATABASES = values.DatabaseURLValue('postgres://localhost/cobropago')
 
     # General
-    APPEND_SLASH = values.BooleanValue(False)
+    APPEND_SLASH = values.BooleanValue(True)
     TIME_ZONE = 'UTC'
     LANGUAGE_CODE = 'en-us'
     # If you set this to False, Django will make some optimizations so as not
@@ -69,7 +69,7 @@ class Common(Configuration):
     USE_I18N = False
     USE_L10N = True
     USE_TZ = True
-    LOGIN_REDIRECT_URL = '/'
+    LOGIN_REDIRECT_URL = '/admin/login/'
 
     # Static Files
 
@@ -80,13 +80,6 @@ class Common(Configuration):
         'django.contrib.staticfiles.finders.FileSystemFinder',
         'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     )
-
-    WEBPACK_LOADER = {
-        'DEFAULT': {
-            'BUNDLE_DIR_NAME': 'bundles/',
-            'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
-        }
-    }
 
     # Media files
     MEDIA_ROOT = join(os.path.dirname(BASE_DIR), 'media')
@@ -191,6 +184,7 @@ class Common(Configuration):
             'rest_framework.permissions.IsAuthenticated',
         ],
         'DEFAULT_AUTHENTICATION_CLASSES': (
+            'rest_framework.authentication.BasicAuthentication',
             'rest_framework.authentication.SessionAuthentication',
             'rest_framework.authentication.TokenAuthentication',
         )
